@@ -94,4 +94,21 @@ pipeline {
             }
         }
     }
+    post {
+        success {
+            emailext(
+                subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "Pipeline completed successfully.\n\nBuild: ${env.BUILD_URL}",
+                to: 'parthsivakumar@gmail.com'
+            )
+        }
+
+        failure {
+            emailext(
+                subject: "FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+                body: "Pipeline failed.\n\nCheck console output: ${env.BUILD_URL}",
+                to: 'parthsivakumar@gmail.com'
+            )
+        }
+    }
 }
