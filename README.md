@@ -45,3 +45,4 @@ Run tests:
 - [ ] Configure Docker Compose
 - [ ] Automate CI/CD using Jenkins
 - [ ] Verify automated deployment
+\nCI/CD auto-trigger verification
