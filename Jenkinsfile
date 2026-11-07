@@ -65,12 +65,14 @@ pipeline {
                     printf 'DOCKERHUB_USERNAME=parthsk\\nIMAGE_TAG=%s\\n' \
                         "$BUILD_NUMBER" > .env
 
+                    HOST_WORKSPACE="/var/lib/docker/volumes/jenkins_jenkins_home/_data/workspace/calculator-ci-cd"
+
                     docker compose -p "$COMPOSE_PROJECT" \
-                        --project-directory "$WORKSPACE" \
+                        --project-directory "$HOST_WORKSPACE" \
                         -f "$WORKSPACE/docker-compose.yml" pull calculator
 
                     docker compose -p "$COMPOSE_PROJECT" \
-                        --project-directory "$WORKSPACE" \
+                        --project-directory "$HOST_WORKSPACE" \
                         -f "$WORKSPACE/docker-compose.yml" up -d --remove-orphans
 
                     docker run --rm \
